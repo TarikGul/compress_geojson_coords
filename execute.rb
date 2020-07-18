@@ -19,7 +19,7 @@ def refactorJsonCoordinates hash
         parseNum(arr)
     end
 
-    # set the 
+    # set the features coordinate at x index to the new mapped object
     features[i]["geometry"]["coordinates"] = mapped
   end
 
