@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'json'
 
+require 'byebug'
+
 # Before you run anything make sure to put all the json files you want
 # parsed and compressed inside the json_files folder
 files_to_rewrite = Dir.entries("json_files").select {|f| !File.directory? f}
@@ -16,7 +18,7 @@ def refactorJsonCoordinates hash
     
     # memoize the array and then we will replace the coords array in the hash
     mapped = f.map do |arr| 
-        parseNum(arr)
+      parseNum(arr)
     end
 
     # set the features coordinate at x index to the new mapped object
@@ -30,8 +32,20 @@ end
 def parseNum nums 
   new_coords = []
 
+  if(nums.length === 3)
+    nums.pop
+  end
+
   nums.each do |num|
     arr = num.to_s.split('.')
+  
+    if arr[1] == "undefined"
+      new_coords << arr.join('.')
+      break;
+    elsif arr[1].length < 6
+      new_coords << arr.join('.')
+      break;
+    end
 
     arr[1] = arr[1][0...6]
     new_coords << arr.join('.').to_f
