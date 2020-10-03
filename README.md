@@ -1,7 +1,7 @@
 # Welcome to the Geojson Script
 
 ## TODO
--Im currently working on the src file and turning this into a more usable library with some more options, and user control.
+-Im currently working on the src file and turning this into a more usable library with some more options, and user control. <br/>
 -I need to optimize the algorithm to calculate and reference the change in degree per line in order to find more redundancies
 
 The goal of this script is to allow you to compress your file size for you geojson files by 
