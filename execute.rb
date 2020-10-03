@@ -17,8 +17,17 @@ def refactorJsonCoordinates hash
     f = feature["geometry"]["coordinates"]
     
     # memoize the array and then we will replace the coords array in the hash
-    mapped = f.map do |arr| 
-      parseNum(arr)
+    count = 0
+    mapped = []
+    
+    f.each do |arr|
+      if count == 0
+        mapped << parseNum(arr)
+        count += 1
+      elsif count == 1
+        count -= 1
+        next 
+      end
     end
 
     # set the features coordinate at x index to the new mapped object
